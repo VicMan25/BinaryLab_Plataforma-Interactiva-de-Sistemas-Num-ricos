@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema Binario — Módulo Educativo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+
+<body class="light-mode">
+
+  <!-- ══════════════════════════════════════════
+     SIDEBAR NAVEGACIÓN
+══════════════════════════════════════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <span class="logo-icon">01</span>
+        <span class="logo-text">BinEdu</span>
+      </div>
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="cerrar menú">✕</button>
+    </div>
+
+    <!-- Progreso -->
+    <div class="progress-box">
+      <div class="progress-label">
+        <span>Progreso</span>
+        <span id="progressPercent">0%</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progressBar"></div>
+      </div>
+      <div class="progress-modules" id="progressModules">0 / 9 módulos</div>
+    </div>
+
+    <!-- Menú -->
+    <nav class="nav-menu">
+      <button class="nav-item active" data-module="teoria" onclick="showModule('teoria')">
+        <span class="nav-icon">📖</span> Teoría Binaria
+      </button>
+      <button class="nav-item" data-module="posicion" onclick="showModule('posicion')">
+        <span class="nav-icon">📐</span> Notación Posicional
+      </button>
+      <button class="nav-item" data-module="bin2dec" onclick="showModule('bin2dec')">
+        <span class="nav-icon">🔄</span> Binario → Decimal
+      </button>
+      <button class="nav-item" data-module="dec2bin" onclick="showModule('dec2bin')">
+        <span class="nav-icon">🔁</span> Decimal → Binario
+      </button>
+      <button class="nav-item" data-module="practica_b2d" onclick="showModule('practica_b2d')">
+        <span class="nav-icon">✏️</span> Práctica B→D
+      </button>
+      <button class="nav-item" data-module="practica_d2b" onclick="showModule('practica_d2b')">
+        <span class="nav-icon">✏️</span> Práctica D→B
+      </button>
+      <button class="nav-item" data-module="quiz" onclick="showModule('quiz')">
+        <span class="nav-icon">🧠</span> Verificar Comprensión
+      </button>
+      <button class="nav-item" data-module="juego" onclick="showModule('juego')">
+        <span class="nav-icon">🎮</span> Juego Binario
+      </button>
+      <button class="nav-item" data-module="ipv4" onclick="showModule('ipv4')">
+        <span class="nav-icon">🌐</span> Direcciones IPv4
+      </button>
+      <button class="nav-item" data-module="hex" onclick="showModule('hex')">
+        <span class="nav-icon">🟣</span> Sistema Hexadecimal
+      </button>
+    </nav>
+
+    <!-- Modo oscuro -->
+    <div class="theme-toggle-wrap">
+      <label class="theme-switch">
+        <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()" />
+        <span class="slider"></span>
+      </label>
+      <span>Modo oscuro</span>
+    </div>
+  </aside>
+
+  <!-- ══════════════════════════════════════════
+     CONTENIDO PRINCIPAL
+══════════════════════════════════════════ -->
+  <main class="main-content">
+
+    <!-- Topbar -->
+    <header class="topbar">
+      <button class="menu-btn" id="menuBtn" onclick="openSidebar()">☰</button>
+      <h1 class="topbar-title" id="topbarTitle">Sistema de Numeración Binaria</h1>
+      <div class="topbar-badge" id="topbarBadge">Módulo 1/9</div>
+    </header>
+
+    <!-- ════════════════ MÓDULO 1: TEORÍA ════════════════ -->
+    <section class="module active" id="mod-teoria">
+      <div class="module-hero">
+        <div class="module-hero-text">
+          <span class="module-tag">Módulo 1</span>
+          <h2>Sistema de Numeración Binaria</h2>
+          <p>Descubre cómo las computadoras entienden el mundo con solo dos dígitos: <strong>0</strong> y
+            <strong>1</strong>.
+          </p>
+        </div>
+        <div class="module-hero-icon">01</div>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <h3>¿Qué es el sistema binario?</h3>
+          <p>El sistema binario es un sistema de numeración de <strong>base 2</strong>. A diferencia del sistema decimal
+            (base 10) que usa los dígitos 0-9, el binario solo usa <strong>0</strong> y <strong>1</strong>.</p>
+          <p>Estos dos estados representan perfectamente los dos estados eléctricos de un circuito: <em>apagado (0)</em>
+            y <em>encendido (1)</em>.</p>
+          <div class="info-box">
+            <span class="info-icon">💡</span>
+            Toda información en una computadora —texto, imágenes, videos— se almacena como secuencias de 0s y 1s.
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Binario vs Decimal</h3>
+          <div class="compare-table">
+            <div class="compare-head">
+              <div>Sistema Decimal</div>
+              <div>Sistema Binario</div>
+            </div>
+            <div class="compare-row">
+              <div>Base 10</div>
+              <div>Base 2</div>
+            </div>
+            <div class="compare-row">
+              <div>Dígitos: 0-9</div>
+              <div>Dígitos: 0, 1</div>
+            </div>
+            <div class="compare-row">
+              <div>Uso cotidiano</div>
+              <div>Uso en computadoras</div>
+            </div>
+            <div class="compare-row">
+              <div>Ej: 42</div>
+              <div>Ej: 101010</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Tabla de Equivalencias</h3>
+          <div class="equiv-table">
+            <div class="equiv-head"><span>Decimal</span><span>Binario</span><span>Decimal</span><span>Binario</span>
+            </div>
+            <div class="equiv-row"><span>0</span><span class="mono">0000</span><span>8</span><span
+                class="mono">1000</span></div>
+            <div class="equiv-row"><span>1</span><span class="mono">0001</span><span>9</span><span
+                class="mono">1001</span></div>
+            <div class="equiv-row"><span>2</span><span class="mono">0010</span><span>10</span><span
+                class="mono">1010</span></div>
+            <div class="equiv-row"><span>3</span><span class="mono">0011</span><span>11</span><span
+                class="mono">1011</span></div>
+            <div class="equiv-row"><span>4</span><span class="mono">0100</span><span>12</span><span
+                class="mono">1100</span></div>
+            <div class="equiv-row"><span>5</span><span class="mono">0101</span><span>13</span><span
+                class="mono">1101</span></div>
+            <div class="equiv-row"><span>6</span><span class="mono">0110</span><span>14</span><span
+                class="mono">1110</span></div>
+            <div class="equiv-row"><span>7</span><span class="mono">0111</span><span>15</span><span
+                class="mono">1111</span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Bits, Bytes y su uso</h3>
+          <div class="bits-visual">
+            <div class="bit-item"><span class="bit-label">BIT</span><span class="bit-desc">Un solo dígito binario (0 ó
+                1). La unidad mínima de información.</span></div>
+            <div class="bit-arrow">→</div>
+            <div class="bit-item"><span class="bit-label">NIBBLE</span><span class="bit-desc">4 bits juntos. Ej: <span
+                  class="mono">1010</span></span></div>
+            <div class="bit-arrow">→</div>
+            <div class="bit-item"><span class="bit-label">BYTE</span><span class="bit-desc">8 bits juntos. Ej: <span
+                  class="mono">11001010</span>. Puede representar 256 valores (0–255).</span></div>
+          </div>
+          <div class="info-box" style="margin-top:1rem">
+            <span class="info-icon">🖥️</span>
+            Las direcciones IPv4 usan <strong>32 bits</strong> (4 bytes). Por eso cada octeto va de 0 a 255.
+          </div>
+        </div>
+      </div>
+
+      <div class="module-nav">
+        <button class="btn btn-primary" onclick="completeAndNext('teoria','posicion')">Siguiente módulo →</button>
+      </div>
+    </section>
+
+    <!-- ════════════════ MÓDULO 2: POSICIÓN ════════════════ -->
+    <section class="module" id="mod-posicion">
+      <div class="module-hero">
+        <div class="module-hero-text">
+          <span class="module-tag">Módulo 2</span>
+          <h2>Notación de Posición Binaria</h2>
+          <p>Cada posición en un número binario tiene un <strong>valor basado en potencias de 2</strong>.</p>
+        </div>
+        <div class="module-hero-icon">2ⁿ</div>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <h3>Potencias de 2</h3>
+          <div class="powers-row">
+            <div class="power-cell">
+              <div class="power-exp">2⁷</div>
+              <div class="power-val">128</div>
+            </div>
+            <div class="power-cell">
+              <div class="power-exp">2⁶</div>
+              <div class="power-val">64</div>
+            </div>
+            <div class="power-cell">
+              <div class="power-exp">2⁵</div>
+              <div class="power-val">32</div>
+            </div>
+            <div class="power-cell">
+              <div class="power-exp">2⁴</div>
+              <div class="power-val">16</div>
+            </div>
+            <div class="power-cell">
+              <div class="power-exp">2³</div>
+              <div class="power-val">8</div>
+            </div>
+            <div class="power-cell">
+              <div class="power-exp">2²</div>
+              <div class="power-val">4</div>
+            </div>
+            <div class="power-cell">
+              <div class="power-exp">2¹</div>
+              <div class="power-val">2</div>
+            </div>
+            <div class="power-cell">
+              <div class="power-exp">2⁰</div>
+              <div class="power-val">1</div>
+            </div>
+          </div>
+          <p style="margin-top:1rem;font-size:.9rem;color:var(--text-muted)">Cada posición vale el doble de la anterior
+            (de derecha a izquierda).</p>
+        </div>
+
+        <div class="card full-width">
+          <h3>Explorador de Posiciones</h3>
+          <p>Ingresa un número binario y observa el valor de cada posición:</p>
+          <div class="input-row">
+            <input type="text" id="posInput" class="input" placeholder="Ej: 1011" maxlength="8"
+              oninput="explorePosicion()" />
+          </div>
+          <div id="posResult" class="pos-result"></div>
+        </div>
+      </div>
+
+      <div class="module-nav">
+        <button class="btn btn-ghost" onclick="showModule('teoria')">← Anterior</button>
+        <button class="btn btn-primary" onclick="completeAndNext('posicion','bin2dec')">Siguiente módulo →</button>
+      </div>
+    </section>
+
+    <!-- ════════════════ MÓDULO 3: BINARIO → DECIMAL ════════════════ -->
+    <section class="module" id="mod-bin2dec">
+      <div class="module-hero">
+        <div class="module-hero-text">
+          <span class="module-tag">Módulo 3</span>
+          <h2>Conversor Binario → Decimal</h2>
+          <p>Aprende a convertir cualquier número binario a su equivalente decimal paso a paso.</p>
+        </div>
+        <div class="module-hero-icon">→D</div>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <h3>¿Cómo se convierte?</h3>
+          <p>Multiplica cada bit por su potencia de 2 correspondiente y suma todos los resultados:</p>
+          <div class="formula-box">
+            <span class="mono">1 0 1 1</span><br />
+            <span class="formula-detail">= 1×2³ + 0×2² + 1×2¹ + 1×2⁰</span><br />
+            <span class="formula-detail">= 8 + 0 + 2 + 1</span><br />
+            <span class="formula-result">= <strong>11</strong></span>
+          </div>
+        </div>
+
+        <div class="card full-width">
+          <h3>Conversor Interactivo</h3>
+          <div class="converter-wrap">
+            <div class="input-row">
+              <input type="text" id="b2dInput" class="input mono" placeholder="Ingresa número binario (ej: 1101)"
+                maxlength="16" />
+              <button class="btn btn-primary" onclick="convertB2D()">Convertir</button>
+            </div>
+            <div id="b2dError" class="error-msg"></div>
+            <div id="b2dSteps" class="steps-container"></div>
+            <div id="b2dResult" class="result-display"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-nav">
+        <button class="btn btn-ghost" onclick="showModule('posicion')">← Anterior</button>
+        <button class="btn btn-primary" onclick="completeAndNext('bin2dec','dec2bin')">Siguiente módulo →</button>
+      </div>
+    </section>
+
+    <!-- ════════════════ MÓDULO 4: DECIMAL → BINARIO ════════════════ -->
+    <section class="module" id="mod-dec2bin">
+      <div class="module-hero">
+        <div class="module-hero-text">
+          <span class="module-tag">Módulo 4</span>
+          <h2>Conversor Decimal → Binario</h2>
+          <p>Aprende el método de divisiones sucesivas entre 2 para convertir a binario.</p>
+        </div>
+        <div class="module-hero-icon">→B</div>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <h3>Método de Divisiones por 2</h3>
+          <p>Divide el número entre 2 repetidamente. Los <strong>residuos</strong>, leídos de abajo hacia arriba, forman
+            el número binario.</p>
+          <div class="formula-box">
+            <div class="division-example">
+              <div class="div-row"><span>13 ÷ 2</span><span>= 6</span><span class="residuo">R: <strong>1</strong></span>
+              </div>
+              <div class="div-row"><span>6 ÷ 2</span><span>= 3</span><span class="residuo">R: <strong>0</strong></span>
+              </div>
+              <div class="div-row"><span>3 ÷ 2</span><span>= 1</span><span class="residuo">R: <strong>1</strong></span>
+              </div>
+              <div class="div-row"><span>1 ÷ 2</span><span>= 0</span><span class="residuo">R: <strong>1</strong></span>
+              </div>
+            </div>
+            <span class="formula-result">13₁₀ = <strong>1101</strong>₂ (leer ↑)</span>
+          </div>
+        </div>
+
+        <div class="card full-width">
+          <h3>Conversor Interactivo</h3>
+          <div class="converter-wrap">
+            <div class="input-row">
+              <input type="number" id="d2bInput" class="input" placeholder="Ingresa número decimal (ej: 42)" min="0"
+                max="65535" />
+              <button class="btn btn-primary" onclick="convertD2B()">Convertir</button>
+            </div>
+            <div id="d2bError" class="error-msg"></div>
+            <div id="d2bSteps" class="steps-container"></div>
+            <div id="d2bResult" class="result-display"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-nav">
+        <button class="btn btn-ghost" onclick="showModule('bin2dec')">← Anterior</button>
+        <button class="btn btn-primary" onclick="completeAndNext('dec2bin','practica_b2d')">Siguiente módulo →</button>
+      </div>
+    </section>
+
+    <!-- ════════════════ MÓDULO 5: PRÁCTICA B→D ════════════════ -->
+    <section class="module" id="mod-practica_b2d">
+      <div class="module-hero">
+        <div class="module-hero-text">
+          <span class="module-tag">Módulo 5</span>
+          <h2>Práctica: Binario → Decimal</h2>
+          <p>Pon a prueba tus conocimientos resolviendo ejercicios aleatorios.</p>
+        </div>
+        <div class="module-hero-icon">✏️</div>
+      </div>
+
+      <div class="card" style="max-width:600px;margin:0 auto">
+        <div class="difficulty-selector">
+          <span>Dificultad:</span>
+          <button class="diff-btn active" onclick="setDiff('practica_b2d','easy',this)">Fácil</button>
+          <button class="diff-btn" onclick="setDiff('practica_b2d','medium',this)">Medio</button>
+          <button class="diff-btn" onclick="setDiff('practica_b2d','hard',this)">Difícil</button>
+        </div>
+        <div class="score-row">
+          <span>Puntaje: <strong id="b2dScore">0</strong></span>
+          <span>Intentos: <strong id="b2dAttempts">0</strong></span>
+          <span>Correctas: <strong id="b2dCorrect">0</strong></span>
+        </div>
+        <div class="exercise-card">
+          <p class="exercise-label">Convierte este número binario a decimal:</p>
+          <div class="exercise-number mono" id="b2dExNum">Cargando...</div>
+          <div class="input-row">
+            <input type="number" id="b2dExInput" class="input" placeholder="Tu respuesta"
+              onkeypress="if(event.key==='Enter')checkB2D()" />
+            <button class="btn btn-primary" onclick="checkB2D()">Verificar</button>
+          </div>
+          <div id="b2dFeedback" class="feedback-msg"></div>
+        </div>
+        <button class="btn btn-ghost full-btn" onclick="loadB2DExercise()">🔄 Nuevo ejercicio</button>
+      </div>
+
+      <div class="module-nav">
+        <button class="btn btn-ghost" onclick="showModule('dec2bin')">← Anterior</button>
+        <button class="btn btn-primary" onclick="completeAndNext('practica_b2d','practica_d2b')">Siguiente módulo
+          →</button>
+      </div>
+    </section>
+
+    <!-- ════════════════ MÓDULO 6: PRÁCTICA D→B ════════════════ -->
+    <section class="module" id="mod-practica_d2b">
+      <div class="module-hero">
+        <div class="module-hero-text">
+          <span class="module-tag">Módulo 6</span>
+          <h2>Práctica: Decimal → Binario</h2>
+          <p>Ejercita la conversión de números decimales al sistema binario.</p>
+        </div>
+        <div class="module-hero-icon">✏️</div>
+      </div>
+
+      <div class="card" style="max-width:600px;margin:0 auto">
+        <div class="difficulty-selector">
+          <span>Dificultad:</span>
+          <button class="diff-btn active" onclick="setDiff('practica_d2b','easy',this)">Fácil</button>
+          <button class="diff-btn" onclick="setDiff('practica_d2b','medium',this)">Medio</button>
+          <button class="diff-btn" onclick="setDiff('practica_d2b','hard',this)">Difícil</button>
+        </div>
+        <div class="score-row">
+          <span>Puntaje: <strong id="d2bScore">0</strong></span>
+          <span>Intentos: <strong id="d2bAttempts">0</strong></span>
+          <span>Correctas: <strong id="d2bCorrect">0</strong></span>
+        </div>
+        <div class="exercise-card">
+          <p class="exercise-label">Convierte este número decimal a binario:</p>
+          <div class="exercise-number" id="d2bExNum">Cargando...</div>
+          <div class="input-row">
+            <input type="text" id="d2bExInput" class="input mono" placeholder="Tu respuesta (solo 0s y 1s)"
+              onkeypress="if(event.key==='Enter')checkD2B()" />
+            <button class="btn btn-primary" onclick="checkD2B()">Verificar</button>
+          </div>
+          <div id="d2bFeedback" class="feedback-msg"></div>
+        </div>
+        <button class="btn btn-ghost full-btn" onclick="loadD2BExercise()">🔄 Nuevo ejercicio</button>
+      </div>
+
+      <div class="module-nav">
+        <button class="btn btn-ghost" onclick="showModule('practica_b2d')">← Anterior</button>
+        <button class="btn btn-primary" onclick="completeAndNext('practica_d2b','quiz')">Siguiente módulo →</button>
+      </div>
+    </section>
+
+    <!-- ════════════════ MÓDULO 7: QUIZ ════════════════ -->
+    <section class="module" id="mod-quiz">
+      <div class="module-hero">
+        <div class="module-hero-text">
+          <span class="module-tag">Módulo 7</span>
+          <h2>Verificar Comprensión</h2>
+          <p>Pon a prueba todo lo aprendido con este cuestionario.</p>
+        </div>
+        <div class="module-hero-icon">🧠</div>
+      </div>
+
+      <div id="quizContainer" style="max-width:700px;margin:0 auto">
+        <div id="quizStart" class="card text-center">
+          <p style="font-size:1.1rem;margin-bottom:1.5rem">El cuestionario tiene <strong>6 preguntas</strong> de
+            selección múltiple sobre el sistema binario e IPv4.</p>
+          <button class="btn btn-primary" onclick="startQuiz()">Comenzar cuestionario</button>
+        </div>
+        <div id="quizQuestions" style="display:none"></div>
+        <div id="quizResults" style="display:none"></div>
+      </div>
+
+      <div class="module-nav">
+        <button class="btn btn-ghost" onclick="showModule('practica_d2b')">← Anterior</button>
+        <button class="btn btn-primary" onclick="completeAndNext('quiz','juego')">Siguiente módulo →</button>
+      </div>
+    </section>
+
+    <!-- ════════════════ MÓDULO 8: JUEGO ════════════════ -->
+    <section class="module" id="mod-juego">
+      <div class="module-hero">
+        <div class="module-hero-text">
+          <span class="module-tag">Módulo 8</span>
+          <h2>Juego Binario</h2>
+          <p>¡Pon a prueba tu velocidad y precisión! Responde antes de que acabe el tiempo.</p>
+        </div>
+        <div class="module-hero-icon">🎮</div>
+      </div>
+
+      <div class="card" style="max-width:650px;margin:0 auto">
+        <!-- Config del juego -->
+        <div id="gameSetup">
+          <div class="game-config-grid">
+            <div>
+              <label class="config-label">Modo de juego</label>
+              <div class="radio-group">
+                <label class="radio-opt"><input type="radio" name="gameMode" value="bin2dec" checked /> Binario →
+                  Decimal</label>
+                <label class="radio-opt"><input type="radio" name="gameMode" value="dec2bin" /> Decimal →
+                  Binario</label>
+              </div>
+            </div>
+            <div>
+              <label class="config-label">Dificultad</label>
+              <div class="radio-group">
+                <label class="radio-opt"><input type="radio" name="gameDiff" value="easy" checked /> Fácil</label>
+                <label class="radio-opt"><input type="radio" name="gameDiff" value="medium" /> Medio</label>
+                <label class="radio-opt"><input type="radio" name="gameDiff" value="hard" /> Difícil</label>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary full-btn" style="margin-top:1.5rem" onclick="startGame()">¡Comenzar
+            juego!</button>
+        </div>
+
+        <!-- Juego en curso -->
+        <div id="gamePlay" style="display:none">
+          <div class="game-header">
+            <div class="game-stat">⏱️ <span id="gameTimer">30</span>s</div>
+            <div class="game-stat">🏆 <span id="gameScore">0</span> pts</div>
+            <div class="game-stat">✅ <span id="gameCorrect">0</span></div>
+          </div>
+          <div class="timer-bar-wrap">
+            <div class="timer-bar-fill" id="timerBar"></div>
+          </div>
+          <p class="game-question-label" id="gameModeLabel">¿Cuánto es en decimal?</p>
+          <div class="game-question mono" id="gameQuestion">---</div>
+          <div class="game-options" id="gameOptions"></div>
+          <div id="gameFeedback" class="game-feedback"></div>
+        </div>
+
+        <!-- Resultado -->
+        <div id="gameOver" style="display:none">
+          <div class="game-over-content">
+            <div class="game-over-icon">🏆</div>
+            <h3>¡Juego terminado!</h3>
+            <div class="game-final-stats">
+              <div class="final-stat"><span>Puntaje</span><strong id="finalScore">0</strong></div>
+              <div class="final-stat"><span>Correctas</span><strong id="finalCorrect">0</strong></div>
+              <div class="final-stat"><span>Incorrectas</span><strong id="finalWrong">0</strong></div>
+            </div>
+            <div id="gameRank" class="game-rank"></div>
+            <button class="btn btn-primary full-btn" onclick="resetGame()">Jugar de nuevo</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="module-nav">
+        <button class="btn btn-ghost" onclick="showModule('quiz')">← Anterior</button>
+        <button class="btn btn-primary" onclick="completeAndNext('juego','ipv4')">Siguiente módulo →</button>
+      </div>
+    </section>
+
+    <!-- ════════════════ MÓDULO 9: IPv4 ════════════════ -->
+    <section class="module" id="mod-ipv4">
+      <div class="module-hero">
+        <div class="module-hero-text">
+          <span class="module-tag">Módulo 9</span>
+          <h2>Direcciones IPv4 y Binario</h2>
+          <p>Comprende cómo las direcciones IP se representan en el sistema binario.</p>
+        </div>
+        <div class="module-hero-icon">🌐</div>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card">
+          <h3>¿Qué es una dirección IPv4?</h3>
+          <p>Una dirección IPv4 es un identificador único de <strong>32 bits</strong> que se asigna a cada dispositivo
+            en una red.</p>
+          <p>Se escribe como <strong>4 octetos</strong> (grupos de 8 bits) separados por puntos. Cada octeto puede tener
+            un valor del <strong>0 al 255</strong>.</p>
+          <div class="ip-visual-example">
+            <div class="ip-octet">
+              <div class="ip-oct-val">192</div>
+              <div class="ip-oct-bin mono">11000000</div>
+              <div class="ip-oct-label">Octeto 1</div>
+            </div>
+            <div class="ip-dot">.</div>
+            <div class="ip-octet">
+              <div class="ip-oct-val">168</div>
+              <div class="ip-oct-bin mono">10101000</div>
+              <div class="ip-oct-label">Octeto 2</div>
+            </div>
+            <div class="ip-dot">.</div>
+            <div class="ip-octet">
+              <div class="ip-oct-val">1</div>
+              <div class="ip-oct-bin mono">00000001</div>
+              <div class="ip-oct-label">Octeto 3</div>
+            </div>
+            <div class="ip-dot">.</div>
+            <div class="ip-octet">
+              <div class="ip-oct-val">1</div>
+              <div class="ip-oct-bin mono">00000001</div>
+              <div class="ip-oct-label">Octeto 4</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card full-width">
+          <h3>Convertidor IPv4 ↔ Binario</h3>
+          <div class="tabs">
+            <button class="tab active" onclick="switchIpTab('dec2bin')">Decimal → Binario</button>
+            <button class="tab" onclick="switchIpTab('bin2dec')">Binario → Decimal</button>
+          </div>
+
+          <div id="ipDec2Bin">
+            <p>Ingresa una dirección IPv4 en formato decimal:</p>
+            <div class="input-row">
+              <input type="text" id="ipDecInput" class="input mono" placeholder="Ej: 192.168.1.1" />
+              <button class="btn btn-primary" onclick="convertIPDec()">Convertir</button>
+            </div>
+            <div id="ipDecError" class="error-msg"></div>
+            <div id="ipDecResult" class="ip-result"></div>
+          </div>
+
+          <div id="ipBin2Dec" style="display:none">
+            <p>Ingresa una dirección IPv4 en formato binario (octetos de 8 bits):</p>
+            <div class="input-row">
+              <input type="text" id="ipBinInput" class="input mono"
+                placeholder="Ej: 11000000.10101000.00000001.00000001" />
+              <button class="btn btn-primary" onclick="convertIPBin()">Convertir</button>
+            </div>
+            <div id="ipBinError" class="error-msg"></div>
+            <div id="ipBinResult" class="ip-result"></div>
+          </div>
+        </div>
+
+        <div class="card full-width">
+          <h3>Ejemplos de IPs Comunes</h3>
+          <div class="ip-examples-grid" id="ipExamplesGrid">
+            <!-- Renderizado por JS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="module-nav">
+        <button class="btn btn-ghost" onclick="showModule('juego')">← Anterior</button>
+        <button class="btn btn-primary" onclick="completeAndNext('ipv4','hex')">Siguiente módulo →</button>
+      </div>
+    </section>
+
+    <!-- ════════════════ MÓDULO HEXADECIMAL ════════════════ -->
+    <section class="module" id="mod-hex">
+      <div class="module-hero">
+        <div class="module-hero-text">
+          <span class="module-tag">Nuevo</span>
+          <h2>Sistema Hexadecimal</h2>
+          <p>Aprende el sistema base 16 usado en programación, redes y diseño web.</p>
+        </div>
+        <div class="module-hero-icon">16</div>
+      </div>
+
+      <div class="cards-grid">
+
+        <!-- TEORIA -->
+        <div class="card">
+          <h3>¿Qué es hexadecimal?</h3>
+          <p>El sistema hexadecimal usa <strong>16 símbolos</strong>:</p>
+          <p class="mono">0-9 y A-F</p>
+          <p>
+            A=10, B=11, C=12, D=13, E=14, F=15
+          </p>
+        </div>
+
+        <!-- TABLA -->
+        <div class="card">
+          <h3>Equivalencias</h3>
+          <div class="equiv-table">
+            <div class="equiv-row"><span>10</span><span>A</span></div>
+            <div class="equiv-row"><span>11</span><span>B</span></div>
+            <div class="equiv-row"><span>12</span><span>C</span></div>
+            <div class="equiv-row"><span>13</span><span>D</span></div>
+            <div class="equiv-row"><span>14</span><span>E</span></div>
+            <div class="equiv-row"><span>15</span><span>F</span></div>
+          </div>
+        </div>
+
+        <!-- CONVERSOR -->
+        <div class="card full-width">
+          <h3>Conversor Hexadecimal</h3>
+
+          <div class="input-row">
+            <input type="number" id="decToHexInput" class="input" placeholder="Decimal" />
+            <button class="btn btn-primary" onclick="convertDecToHex()">→ HEX</button>
+          </div>
+
+          <div class="input-row">
+            <input type="text" id="hexToDecInput" class="input mono" placeholder="Hexadecimal" />
+            <button class="btn btn-primary" onclick="convertHexToDec()">→ DEC</button>
+          </div>
+
+          <div class="input-row">
+            <input type="text" id="binToHexInput" class="input mono" placeholder="Binario" />
+            <button class="btn btn-primary" onclick="convertBinToHex()">→ HEX</button>
+          </div>
+
+          <div class="input-row">
+            <input type="text" id="hexToBinInput" class="input mono" placeholder="Hexadecimal" />
+            <button class="btn btn-primary" onclick="convertHexToBin()">→ BIN</button>
+          </div>
+
+          <div id="hexResult" class="result-display"></div>
+        </div>
+
+      </div>
+
+      <div class="module-nav">
+        <button class="btn btn-ghost" onclick="showModule('ipv4')">← Anterior</button>
+        <button class="btn btn-primary" onclick="finishModule()">🎓 Completar módulo</button>
+        
+      </div>
+    </section>
+
+    <!-- ════════════════ PANTALLA FINAL ════════════════ -->
+    <section class="module" id="mod-final">
+      <div class="final-screen">
+        <div class="final-icon">🎓</div>
+        <h2>¡Módulo Completado!</h2>
+        <p>Has terminado el módulo de <strong>Sistema de Numeración Binaria</strong>.</p>
+        <div class="certificate-box">
+          <div class="cert-title">Certificado de Completación</div>
+          <div class="cert-body">
+            <p>Este certificado acredita que has completado satisfactoriamente el módulo educativo</p>
+            <h3>Sistema de Numeración Binaria</h3>
+            <p>Cubriendo: teoría, notación posicional, conversiones, ejercicios prácticos, cuestionario, juego
+              interactivo y direcciones IPv4.</p>
+          </div>
+          <div class="cert-footer">BinEdu — Plataforma Educativa</div>
+        </div>
+        <button class="btn btn-primary" style="margin-top:2rem" onclick="showModule('teoria')">🔄 Reiniciar
+          módulo</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Contenedor de notificaciones -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="/static/app.js"></script>
+</body>
+
+</html>
